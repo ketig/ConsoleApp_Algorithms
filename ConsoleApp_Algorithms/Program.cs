@@ -1,37 +1,53 @@
-﻿double[] numbers = new double[15];
+﻿double[] numbers = new double[7];
 Random random = new Random();
 
 for (int i = 0; i < numbers.Length; i++)
 {
-    numbers[i] = Math.Round(random.NextDouble() * 50 - 20);
+    numbers[i] = Math.Round(random.NextDouble() * 50);
 }
 Print(numbers);
 SelectionSort(numbers);
 Print(numbers);
 
-// Selection sort
-static void SelectionSort(double[] array)
+static void SelectionSort(double[] numbers)
 {
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < numbers.Length - 1; i++)
     {
-        int minIndex = MinIndex(array, i, array.Length);
-
-        Swap(ref array[i], ref array[minIndex]);
+        int minIndex = MinIndex(numbers, i, numbers.Length);
+        // swap i minIndex
+        if (minIndex != i)
+        {
+            Swap(ref numbers[i], ref numbers[minIndex]);
+        }
     }
 }
 
 // Insertion Sort
-
-static int MinIndex(double[] numbers, int start, int end)
-{
-    return 0;
-}
+// Insertion Sort vsSelected Sort
+// Merge Sort
+// Bubble Sort
 
 static void Swap<T>(ref T x, ref T y)
 {
-    T temp = x;
-    x = y;
-    y = temp;
+    (x, y) = (y, x);
+    //T temp = x;
+    //x = y;
+    //y = temp;
+}
+
+static int MinIndex(double[] numbers, int start, int end)
+{
+    int result = start;
+
+    for (int i = start; i < end; i++)
+    {
+        if (numbers[i] < numbers[result])
+        {
+            result = i;
+        }
+    }
+
+    return result;
 }
 
 static void Print<T>(T[] array)
@@ -40,5 +56,5 @@ static void Print<T>(T[] array)
     {
         Console.Write(array[i] + " ");
     }
-    Console.WriteLine("\n");
+    Console.WriteLine(/*"\n"*/);
 }
