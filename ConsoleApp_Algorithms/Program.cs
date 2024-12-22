@@ -6,10 +6,35 @@ for (int i = 0; i < numbers.Length; i++)
     numbers[i] = Math.Round(random.NextDouble() * 50);
 }
 Print(numbers);
-SelectionSort(numbers);
+InsertionSort(numbers);
 Print(numbers);
 
-static void SelectionSort(double[] numbers)
+//8 19 33 0 19 1 9
+//8 19 0 33 19 1 9
+//8 0 19 33 19 1 9
+//0 8 19 33 19 1 9
+//0 8 19 19 33 1 9
+//0 8 19 19 1 33 9
+static void InsertionSort(double[] numbers)
+{
+    for (int i = 1; i < numbers.Length; i++)
+    {
+        for (int j = i - 1; j > -1; j--)
+        {
+            if (numbers[j] > numbers[j + 1])
+            {
+                Swap(ref numbers[j], ref numbers[j + 1]);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+}
+
+static void SelectionSort<T>(T[] numbers)
+    where T : IComparable<T>
 {
     for (int i = 0; i < numbers.Length - 1; i++)
     {
@@ -24,24 +49,24 @@ static void SelectionSort(double[] numbers)
 
 // Insertion Sort
 // Insertion Sort vsSelected Sort
-// Merge Sort
 // Bubble Sort
+
+// Merge Sort
+// Interface
 
 static void Swap<T>(ref T x, ref T y)
 {
     (x, y) = (y, x);
-    //T temp = x;
-    //x = y;
-    //y = temp;
 }
 
-static int MinIndex(double[] numbers, int start, int end)
+static int MinIndex<T>(T[] numbers, int start, int end)
+    where T : IComparable<T>
 {
     int result = start;
 
     for (int i = start; i < end; i++)
     {
-        if (numbers[i] < numbers[result])
+        if (numbers[i].CompareTo(numbers[result]) > 0)
         {
             result = i;
         }
