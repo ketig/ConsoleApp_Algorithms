@@ -10,6 +10,6 @@ namespace ConsoleApp_Algorithms
     {
         public int Swap<T>(ref T x, ref T y);
 
-        public int Print();
+        public void Print();
     }
 }
