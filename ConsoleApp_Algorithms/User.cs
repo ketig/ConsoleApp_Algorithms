@@ -20,9 +20,9 @@ namespace ConsoleApp_Algorithms
             Console.WriteLine(_name);
         }
 
-        public int Swap<T>(ref T x, ref T y)
+        public void Swap<T>(ref T x, ref T y)
         {
-            throw new NotImplementedException();
+            (x, y) = (y, x);
         }
     }
 }
