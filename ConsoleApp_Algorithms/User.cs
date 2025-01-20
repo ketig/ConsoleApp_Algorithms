@@ -9,7 +9,9 @@ namespace ConsoleApp_Algorithms
     internal class User : IComparable<User>, Interface1
     {
         private string _name;
-        
+
+        public string Name { get => _name; set => _name = value; }
+
         public int CompareTo(User? other)
         {
             throw new NotImplementedException();
